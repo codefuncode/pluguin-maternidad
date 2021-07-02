@@ -67,3 +67,4 @@ Plugin Handbook/
 
 =====================================================================
 
+Proseso dee carga de worpress https://desarrollowp.com/blog/tutoriales/ciclo-carga-wordpress/
