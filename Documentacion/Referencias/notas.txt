@@ -1,0 +1,16 @@
+https://developer.wordpress.org/reference/
+
+ 
+functions
+https://developer.wordpress.org/reference/functions/
+
+
+hooks
+https://developer.wordpress.org/reference/hooks/
+
+
+classes
+https://developer.wordpress.org/reference/classes/
+
+methods
+https://developer.wordpress.org/reference/methods/
