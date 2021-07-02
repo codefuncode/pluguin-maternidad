@@ -14,3 +14,9 @@ https://developer.wordpress.org/reference/classes/
 
 methods
 https://developer.wordpress.org/reference/methods/
+
+Referencias de accion 
+https://codex.wordpress.org/Plugin_API/Action_Reference
+
+Escribiendo_un_Plugin
+https://codex.wordpress.org/es:Escribiendo_un_Plugin
