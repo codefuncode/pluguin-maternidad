@@ -17,7 +17,9 @@
  *
  * @package WordPress
  */
-
+// ======================================================================
+//  Para que sirva en otros servidores se de be proveer los datos
+// necesarios para que se conecte a una base de  datos. aquí configuración global
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define('DB_NAME', 'wordpress');
@@ -30,7 +32,7 @@ define('DB_PASSWORD', '');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
-
+// ======================================================================
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8mb4');
 
