@@ -79,3 +79,140 @@ Al investigar los complementos disponibles, necesita saber dónde encontrar los 
 
 
 Al igual que con cualquier software, la descarga de complementos de una fuente que no es de confianza podría provocar la inyección de malware y archivos de complementos comprometidos. Es mejor descargar complementos solo de sitios web confiables y fuentes oficiales, como el Directorio de complementos oficial.
+
+35
+
+Directorio oficial de complementos
+El primer lugar para comenzar a buscar WordPress disponible
+plugins es el directorio de complementos oficial de WordPress.org. El directorio de complementos se encuentra en http://wordpress.org/extend/plugins/.
+Con más de 10,000 complementos disponibles y más de 100 millones de descargas de complementos, es fácil ver el papel vital que desempeñan los complementos en todos los sitios web de WordPress. Todos los complementos disponibles en el directorio de complementos son 100% GPL y de uso gratuito para uso personal o comercial.
+
+
+Ejemplos de complementos populares
+Eche un vistazo a los cinco complementos de WordPress más descargados disponibles para tener una idea de su diversidad:
+
+• Paquete de SEO todo en uno: agrega búsqueda avanzada
+funcionalidad de optimización del motor a WordPress.
+Las características incluyen metadatos personalizados para todo el contenido,
+URL canónicas, soporte de tipo de publicación personalizada y más.
+
+• http://wordpress.org/extend/plugins/all-in-one-seo-pack/
+
+• Mapas del sitio XML de Google: genera un mapa del sitio XML de todo el contenido para enviarlo a los motores de búsqueda populares, como Google, Bing y Ask.com.
+
+• http://wordpress.org/extend/plugins/google-sitemap-generator/
+
+• Akismet: un filtro de spam de comentarios popular para WordPress. Compara todos los comentarios con el servicio web Akismet para verificar si el comentario es spam.
+
+• http://wordpress.org/extend/plugins/akismet/
+
+36
+
+• Galería NextGEN: agrega compatibilidad avanzada con la galería de imágenes a WordPress. Puede crear y administrar fácilmente galerías de imágenes y presentaciones de diapositivas. Las galerías se pueden incrustar en publicaciones o páginas.
+
+• http://wordpress.org/extend/plugins/nextgen-gallery/
+
+• Formulario de contacto 7: agrega un formulario de contacto a cualquier publicación o página en WordPress. Admite múltiples formularios de contacto, filtrado de spam Akismet y CAPTCHA.
+
+• http://wordpress.org/extend/plugins/contact-form-7/ Como puede ver, los complementos anteriores pueden manejar cualquier tarea. Las características agregadas por estos complementos son universales y características que la mayoría de los sitios web en Internet deberían tener.
+
+
+Como puede ver, los complementos anteriores pueden manejar cualquier tarea. Las características agregadas por estos complementos son universales y características que la mayoría de los sitios web en Internet deberían tener. Etiquetas de complementos populares Ahora verá algunas etiquetas populares para complementos. Las etiquetas de complementos son como etiquetas de publicaciones de blog, palabras clave simples que describen un complemento en el directorio de complementos. Esto facilita la búsqueda de complementos existentes por etiqueta. Los siguientes son populares
+ejemplos:
+
+
+• Twitter Todo el mundo ama Twitter por
+microblogs y enlaces para compartir. Puede encontrar una gran cantidad de complementos relacionados con Twitter para WordPress.
+
+• http://wordpress.org/extend/plugins/tags/twitter
+
+• Google: con tantos servicios y API, Google es una etiqueta de complemento popular. Todo, desde Google Ads hasta los mapas de Google, se ha integrado en un complemento de WordPress.
+
+37
+
+• http://wordpress.org/extend/plugins/tags/google
+
+• Widget: la mayoría de los complementos que incluyen un widget también usan la etiqueta del widget. Esto es ideal para ver los muchos tipos de widgets disponibles para WordPress.
+
+• http://wordpress.org/extend/plugins/tags/widget Ver etiquetas de complementos populares es una excelente manera de inspirarse
+al desarrollar nuevos complementos para WordPress.
+
+
+VENTAJAS DE LOS PLUGINS
+WordPress ofrece muchas ventajas al usar complementos. Tú necesitas comprender las ventajas de crear complementos para realmente entienda por qué debería crear complementos. Esto también puede ayudar al determinar la necesidad de un complemento específico en
+WordPress.
+
+No modifica el núcleo
+Una de las principales ventajas de los complementos es la capacidad de modificar el comportamiento de WordPress sin modificar ningún archivo principal. Los archivos principales se refieren a cualquier archivo que forme parte de la Instalación de WordPress.
+
+Hackear archivos centrales puede dificultar la actualización de WordPress cuando se lanza una nueva versión. Si hiciste alguno
+modificaciones a un archivo central, esa modificación sería
+se sobrescribe cuando se produce la actualización. Manteniendo WordPress activo estar al día con la última versión es esencial para mantener su sitio web sitio seguro.
+
+
+La modificación de los archivos principales también puede generar un sitio web inestable. Las diferentes áreas de WordPress dependen de otras áreas para funcionar como se esperaba. Si modifica un archivo principal y ya no funciona como se esperaba, puede causar inestabilidad y muy posiblemente romper una característica completamente no relacionada en WordPress.
+
+
+Por qué reinventar la rueda
+Otra ventaja de crear complementos es la estructura que
+ya existe para su complemento. Muchas de las características comunes ya han sido desarrollados y están listos para usar en su
+enchufar. Por ejemplo, puede aprovechar las funciones integradas
+roles de usuario en WordPress. Usando los roles de usuario puede fácilmente restrinja su código para que se ejecute solo si un usuario es un administrador.
+Mira un ejemplo:
+
+<?php
+if ( current_user_can( 'manage_options' ) ) {
+
+// cualquier código ingresado aquí solo se ejecutará SI el usuario es un administrador
+
+}
+?>
+
+
+
+Como puede ver, es fácil verificar que un usuario tenga los permisos adecuados antes de ejecutar cualquier código en su complemento. Aprenderá sobre cuentas y roles de usuario en el Capítulo 8, "Usuarios".
+
+
+39
+
+
+Como otro ejemplo, observe el envío de un correo electrónico en WordPress. Claro, podría crear una nueva función en su complemento para enviar correo electrónico, pero ¿por qué? WordPress tiene una función útil llamada wp_mail () para enviar correo electrónico. Mira un ejemplo:
+
+
+<?php
+$email_to = 'you@example.com';
+$email_subject = 'Plugin email example';
+$email_message = 'How do you like my new plugin?';
+wp_mail( $email_to, $email_subject, $email_message );
+?>
+
+
+
+Como puede ver, enviar un correo electrónico en WordPress no podría ser más fácil. A menos que su complemento necesite alguna funcionalidad de envío de correo electrónico personalizada, no es necesario que vuelva a crear esta función desde cero. El uso de esta función también garantiza la adopción más amplia para enviar correos electrónicos desde WordPress porque usa la función incorporada.
+
+El uso de las funciones integradas disponibles de WordPress puede reducir en gran medida el tiempo para desarrollar un complemento. Otra ventaja de no reinventar la rueda es que este enfoque en la mayoría de los casos permitirá que sus complementos funcionen en una mayor cantidad de servidores y configuraciones, maximizando así la compatibilidad. No reinvente la rueda con funciones que ya existen en WordPress.
+
+40
+
+Separación de complementos y temas
+Un complemento puede tomar el control del proceso de renderizado; por lo tanto, el complemento puede convertirse en un "tema". De manera similar, un tema puede tener una funcionalidad de complemento incluida. Debido a esto, la diferencia entre los dos a veces puede volverse borrosa, así que ¿por qué no incluir el código del complemento directamente en un tema? Ésta es una pregunta común y puede tener diferentes
+respuestas.
+
+¿Deberían los temas incluir la funcionalidad de complemento? La respuesta corta es no. La razón principal de esto es que los complementos están destinados a agregar características y funcionalidad a WordPress, independientemente del tema utilizado. Esto crea una buena separación entre el diseño de su sitio web y la funcionalidad de su sitio web. La razón por la que se necesita esta separación es para que su tema no esté directamente vinculado a la funcionalidad requerida.
+
+WordPress está diseñado para que pueda cambiar fácilmente su diseño o tema en cualquier momento con solo un par de clics. Si toda la funcionalidad del complemento existía en su tema y cambió de tema, habrá perdido toda la funcionalidad que necesitaba.
+
+También existe un fuerte argumento de que ciertas características deben incluirse en un tema. Una característica común, incluida la mayoría de los temas, es la navegación con rutas de navegación. Esta característica ciertamente podría existir en un complemento, pero al ser una característica centrada en la navegación, tiene sentido incluirla en el tema. Las funciones de optimización de motores de búsqueda también son una característica común que se encuentra en los temas de hoy.
+
+Actualizaciones fáciles
+WordPress facilita la actualización de un complemento a la última versión. Cada complemento instalado desde WordPress.org
+
+
+El directorio de complementos le advierte cuando se lanza una nueva versión del complemento. Actualizar el complemento es tan simple como hacer clic en la notificación de actualización que aparece justo debajo de los detalles del complemento en la pantalla del complemento. Los complementos no instalados desde el directorio de complementos también se pueden actualizar utilizando la función de actualización automática de WordPress. El autor del complemento debe definir dónde WordPress puede descargar la última versión y se encargará del resto. Si el autor del complemento no define esta ubicación, debe actualizar el complemento manualmente.
+
+Mantener los complementos actualizados es una parte importante para mantener su sitio web libre de vulnerabilidades de seguridad y errores. Más fácil de compartir y reutilizar Los complementos son fáciles de compartir con otros. Es mucho más fácil compartir un complemento que decirle a alguien que modifique líneas específicas de código en su tema o WordPress. El uso de complementos también facilita el uso de la misma funcionalidad en varios sitios. Si encuentra un grupo de complementos que le gusten, puede instalarlos fácilmente en cada sitio web de WordPress que cree.
+
+Complemento Sandbox
+Cuando activa un complemento roto en WordPress, no dañará su sitio. Si el complemento desencadena un error fatal, WordPress lo desactiva automáticamente antes de que tenga la oportunidad de hacerlo. Esta característica a prueba de fallas hace que sea menos riesgoso al activar y probar nuevos complementos. Incluso si el complemento causa una pantalla en blanco de la muerte (mensaje de error), puede cambiar fácilmente el nombre de la carpeta del complemento y WordPress lo desactiva. Esto hace que sea imposible que un complemento fraudulento lo bloquee de su propio sitio debido a un error.
+
+42
