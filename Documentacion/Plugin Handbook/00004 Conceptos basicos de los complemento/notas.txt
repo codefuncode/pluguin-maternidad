@@ -1,0 +1,119 @@
+Conceptos basicos de los complementos
+TEMAS
+Empezando
+Hooks: acciones y filtros
+Ganchos básicos
+Agregar ganchos
+Quitar ganchos
+API de WordPress
+Cómo carga WordPress los complementos
+Compartiendo su complemento
+Primeros pasos #Primeros pasos
+En su forma más simple, un complemento de WordPress es un archivo PHP con un comentario en el encabezado del complemento de WordPress. Se recomienda encarecidamente que cree un directorio para almacenar su complemento, de modo que todos los archivos de su complemento estén perfectamente organizados en un solo lugar.
+
+Para comenzar a crear un nuevo complemento, siga los pasos a continuación.
+
+Navegue hasta el directorio wp-content de la instalación de WordPress.
+Abra el directorio de complementos.
+Cree un nuevo directorio y asígnele el nombre del complemento (por ejemplo, nombre del complemento).
+Abra el directorio del nuevo complemento.
+Cree un nuevo archivo PHP (también es bueno nombrar este archivo después de su complemento, por ejemplo, plugin-name.php).
+Así es como se ve el proceso en la línea de comandos de Unix:
+
+wordpress $ cd wp-content
+wp-content $ cd plugins
+plugins $ mkdir plugin-name
+plugins $ cd plugin-name
+plugin-name $ vi plugin-name.php
+
+wordpress $ cd wp-content
+wp-content $ cd complementos
+complementos $ mkdir nombre del complemento
+plugins $ cd nombre-plugin
+nombre-complemento $ vi nombre-complemento.php
+
+
+En el ejemplo anterior, vi es el nombre del editor de texto. Utilice el editor que le resulte más cómodo.
+
+Ahora que está editando el archivo PHP de su nuevo complemento, deberá agregar un comentario en el encabezado del complemento. Este es un comentario de bloque PHP especialmente formateado que contiene metadatos sobre el complemento, como su nombre, autor, versión, licencia, etc. El comentario del encabezado del complemento debe cumplir con los requisitos del encabezado y, como mínimo, contener el nombre del enchufar.
+
+=============================================================
+/**
+ * Plugin Name
+ *
+ * @package           PluginPackage
+ * @author            Your Name
+ * @copyright         2019 Your Name or Company Name
+ * @license           GPL-2.0-or-later
+ *
+ * @wordpress-plugin
+ * Plugin Name:       Plugin Name
+ * Plugin URI:        https://example.com/plugin-name
+ * Description:       Description of the plugin.
+ * Version:           1.0.0
+ * Requires at least: 5.2
+ * Requires PHP:      7.2
+ * Author:            Your Name
+ * Author URI:        https://example.com
+ * Text Domain:       plugin-slug
+ * License:           GPL v2 or later
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ */
+=============================================================
+
+Solo un archivo en la carpeta del complemento debe tener el comentario del encabezado; si el complemento tiene varios archivos PHP, solo uno de esos archivos debe tener el comentario del encabezado.
+
+Después de guardar el archivo, debería poder ver su complemento en la lista de su sitio de WordPress. Inicie sesión en su sitio de WordPress y haga clic en Complementos en el panel de navegación izquierdo de su administrador de WordPress. Esta página muestra una lista de todos los complementos que tiene su sitio de WordPress. ¡Tu nuevo complemento debería estar ahora en esa lista!
+
+
+
+Hooks: acciones y filtros #Hooks: acciones y filtros
+Los ganchos de WordPress le permiten acceder a WordPress en puntos específicos para cambiar el comportamiento de WordPress sin editar ningún archivo principal.
+
+Hay dos tipos de ganchos dentro de WordPress: acciones y filtros. Las acciones le permiten agregar o cambiar la funcionalidad de WordPress, mientras que los filtros le permiten alterar el contenido a medida que se carga y se muestra al usuario del sitio web.
+
+Los ganchos no son solo para desarrolladores de complementos; Los ganchos se utilizan ampliamente para proporcionar la funcionalidad predeterminada por el propio núcleo de WordPress. Otros ganchos son marcadores de posición no utilizados que simplemente están disponibles para que los aproveche cuando necesite modificar el funcionamiento de WordPress. Esto es lo que hace que WordPress sea tan flexible.
+
+Ganchos básicos #Ganchos básicos
+Los 3 ganchos básicos que necesitará al crear un complemento son register_activation_hook (), register_deactivation_hook () y register_uninstall_hook ().
+
+El gancho de activación se ejecuta cuando activa su complemento. Usaría esto para proporcionar una función para configurar su complemento, por ejemplo, crear algunas configuraciones predeterminadas en la tabla de opciones.
+
+El gancho de desactivación se ejecuta cuando desactiva su complemento. Usaría esto para proporcionar una función que borre cualquier dato temporal almacenado por su complemento.
+
+Estos métodos de desinstalación se utilizan para limpiar después de que se elimine su complemento utilizando el administrador de WordPress. Usaría esto para eliminar todos los datos creados por su complemento, como las opciones que se agregaron a la tabla de opciones.
+
+
+
+Agregar ganchos #Agregar ganchos
+Puede agregar sus propios ganchos personalizados con do_action (), lo que permitirá a los desarrolladores extender su complemento pasando funciones a través de sus ganchos.
+
+
+
+Retirar ganchos #Retirar ganchos
+También puede usar invoke remove_action () para eliminar una función que se definió anteriormente. Por ejemplo, si su complemento es un complemento de otro complemento, puede usar remove_action () con la misma función de devolución de llamada que fue agregada por el complemento anterior con add_action (). La prioridad de las acciones es importante en estas situaciones, ya que remove_action () debería ejecutarse después del add_action () inicial.
+
+Debe tener cuidado al eliminar una acción de un gancho, así como al modificar las prioridades, porque puede ser difícil ver cómo estos cambios afectarán otras interacciones con el mismo gancho. Recomendamos encarecidamente realizar pruebas con frecuencia.
+
+Puede obtener más información sobre cómo crear ganchos e interactuar con ellos en la sección Ganchos de este manual.
+
+
+
+API de WordPress #API de WordPress
+¿Sabía que WordPress proporciona una serie de interfaces de programación de aplicaciones (API)? Estas API pueden simplificar enormemente el código que necesita escribir en sus complementos. No querrás reinventar la rueda, especialmente cuando tanta gente ha hecho mucho del trabajo y las pruebas por ti.
+
+La más común es la API de opciones, que facilita el almacenamiento de datos en la base de datos para su complemento. Si está pensando en utilizar cURL en su complemento, la API HTTP puede ser de su interés.
+
+Ya que estamos hablando de complementos, querrá estudiar la API de complementos. Tiene una variedad de funciones que lo ayudarán a desarrollar complementos.
+
+
+Cómo WordPress carga los complementos #Cómo WordPress carga los complementos
+Cuando WordPress carga la lista de complementos instalados en la página Complementos del administrador de WordPress, busca en la carpeta de complementos (y sus subcarpetas) para encontrar archivos PHP con comentarios de encabezado de complemento de WordPress. Si su complemento completo consta de un solo archivo PHP, como Hello Dolly, el archivo podría estar ubicado directamente dentro de la raíz de la carpeta de complementos. Pero más comúnmente, los archivos de complementos residirán en su propia carpeta, nombrada después del complemento.
+
+
+
+Compartir su complemento #Compartir su complemento
+A veces, un complemento que crea es solo para su sitio. Pero a muchas personas les gusta compartir sus complementos con el resto de la comunidad de WordPress. Antes de compartir su complemento, una cosa que debe hacer es elegir una licencia. Esto le permite al usuario de su complemento saber cómo se le permite usar su código. Para mantener la compatibilidad con el núcleo de WordPress, se recomienda que elija una licencia que funcione con la Licencia pública general GNU (GPLv2 +).
+
+
+https://codex.wordpress.org/Plugin_API

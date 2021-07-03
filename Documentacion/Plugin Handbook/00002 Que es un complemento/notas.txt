@@ -1,0 +1,12 @@
+¿Qué es un complemento?
+Los complementos son paquetes de código que amplían la funcionalidad principal de WordPress. Los complementos de WordPress se componen de código PHP y pueden incluir otros activos como imágenes, CSS y JavaScript.
+
+Al crear su propio complemento, está ampliando WordPress, es decir, creando una funcionalidad adicional sobre lo que WordPress ya ofrece. Por ejemplo, podría escribir un complemento que muestre enlaces a las diez publicaciones más recientes en su sitio.
+
+O, utilizando los tipos de publicaciones personalizadas de WordPress, puede escribir un complemento que cree un sistema de tickets de soporte con todas las funciones con notificaciones por correo electrónico, estados de tickets personalizados y un portal orientado al cliente. ¡Las posibilidades son infinitas!
+
+La mayoría de los complementos de WordPress se componen de muchos archivos, pero un complemento realmente solo necesita un archivo principal con un DocBlock formateado específicamente en el encabezado.
+
+Hello Dolly, uno de los primeros complementos, tiene solo 100 líneas. Hello Dolly muestra la letra de la famosa canción en el administrador de WordPress. Se utiliza algo de CSS en el archivo PHP para controlar el estilo de la letra.
+
+Como autor de un complemento de WordPress.org, tiene una oportunidad increíble de crear un complemento que será instalado, manipulado y amado por millones de usuarios de WordPress. Todo lo que necesita hacer es convertir su gran idea en código. El Manual de complementos está aquí para ayudarlo con eso.
