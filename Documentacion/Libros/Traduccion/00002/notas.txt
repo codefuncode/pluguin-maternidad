@@ -1,0 +1,85 @@
+Capitulo 2
+Fundación del complemento
+¿QUÉ HAY EN ESTE CAPÍTULO?
+
+Creando una base sólida para complementos
+
+Determinación de rutas de directorio y archivo
+
+Uso de las funciones Activar y Desactivar
+
+Comprender los métodos de desinstalación de complementos disponibles
+
+Gestión de prácticas de cordura y estándares de codificación
+
+Comprender la documentación adecuada del código
+
+Usar listas de verificación de desarrollo de complementos
+
+Al desarrollar un complemento en WordPress, es esencial comenzar con una base sólida de complementos. Comenzar con una buena base puede eliminar muchos dolores de cabeza a medida que desarrolla su nuevo complemento. Las técnicas discutidas en este capítulo se utilizarán a lo largo de este libro como un buen ejemplo de qué hacer.
+
+CREAR UN ARCHIVO PLUGIN
+Un complemento en WordPress puede ser un solo archivo PHP o un grupo de archivos dentro de una carpeta. Debe considerar muchas cosas al crear un nuevo complemento en WordPress, como el nombre del complemento y el uso adecuado de la carpeta.
+
+
+Nombrar su complemento
+Al elegir un nombre para su complemento, es una buena práctica
+considere un nombre basado en lo que realmente hace su complemento. Por ejemplo, si crea un complemento enfocado en SEO, no querrá llamarlo Complemento de Bob. Su audiencia no tendría idea de lo que realmente hace su complemento según el nombre del complemento. El nombre de su complemento debe ser único para su complemento y también debe ser descriptivo del propósito de su complemento. También es una buena idea buscar en el Directorio de complementos en WordPress.org (http://wordpress.org/extend/plugins/) complementos similares para evitar confusiones. Si decide nombrar su complemento SEO Gold, y ya existe un complemento llamado SEO Silver, puede haber cierta confusión sobre si su complemento es nuevo o simplemente una versión más reciente de un complemento antiguo. No desea que la primera impresión de su complemento se encuentre con confusión. El Capítulo 17, “Comercialización de sus complementos”, trata este tema con más detalle.
+
+
+Usando una carpeta
+Es muy recomendable almacenar todos sus archivos de complementos dentro de una carpeta dentro del directorio de complementos en WordPress. Todos los complementos descargados del directorio de complementos de WordPress.org se estructuran automáticamente en subcarpetas. Esto permite que su complemento contenga fácilmente varios archivos y cualquier otro elemento que desee incluir, como imágenes. También puede incluir subcarpetas para ayudar a organizar mejor los archivos de su complemento. El nombre de la carpeta debe ser el mismo que el nombre del archivo del complemento principal. No debe incluir espacios ni guiones bajos en el nombre de la carpeta; en su lugar, utilice guiones si es necesario. Las subcarpetas y la estructura de directorios jerárquica de los archivos se analizan con más detalle en la sección "Prácticas de cordura" de este capítulo.
+
+
+PRÁCTICAS DE SANIDAD
+Seguir un conjunto común de prácticas de cordura es una de las mejores prácticas para desarrollar complementos en WordPress. Las prácticas descritas en esta sección deben seguirse estrictamente para cualquier complemento que desarrolle. Esto puede ayudar a eliminar muchos errores comunes en WordPress. Estas prácticas también pueden hacer que la organización de sus complementos sea mucho más limpia.
+
+
+Prefijo todo
+Al crear un complemento personalizado, es esencial que anteponga todo con un prefijo único. Esto significa todos los archivos de complementos, nombres de funciones, nombres de variables y todo lo que se incluye con su complemento. ¿Por qué? Simple, uno de los errores más comunes en los complementos es usar nombres demasiado comunes para funciones y variables. Por ejemplo, si tiene una función llamada update_options () y el usuario instala otro complemento con el mismo nombre de función, el sitio web fallará porque no puede tener dos funciones con el mismo nombre en PHP.
+
+
+Una buena regla general es anteponer todo con su complemento
+iniciales y sus propias iniciales. Por ejemplo, si tu nombre es Michael Myers y su complemento se llama Halloween Revenge, prefijaría la función como mm_hr_update_options (). Existe una gran posibilidad de que no exista ningún otro complemento en el mundo con el mismo nombre de función; por lo tanto, existe poco riesgo de tener conflictos con otros complementos. Esta también es una buena regla para los nombres de variables. No utilice nombres generales al crear variables. Por ejemplo, digamos que su complemento crea y usa una variable llamada $ post. Eso podría causar resultados inesperados porque $ post es una variable global en WordPress que contiene los datos de la publicación. Si su complemento sobrescribe los datos en $ post y algo más en WordPress espera que los datos de la publicación sigan existiendo, es posible que tenga un problema grave. En su lugar, puede usar el mismo método de prefijo descrito anteriormente y nombrar su variable $ mm_hr_post. Este es un nombre de variable único, probablemente no se usa en ningún otro complemento.
+
+
+Este libro antepone todo con boj_ (un mashup de las iniciales de los autores) y myplugin_ (asumiendo que el complemento ficticio se llama Mi complemento) así:
+boj_myplugin_function_name ().
+
+
+Organización de archivos
+Mantener los archivos de los complementos organizados es un paso clave para producir un complemento profesional. En términos generales, debe tener solo dos archivos en su carpeta de complementos: el archivo PHP del complemento principal y su archivo uninstall.php. Por motivos organizativos, almacene todos los demás archivos de complementos en un subdirectorio. También se recomienda que divida su complemento en varios archivos más pequeños. Una razón principal para hacerlo es por motivos de rendimiento. Por ejemplo, debe agrupar todas las funciones de la interfaz de administración en un archivo separado. Esto le permite incluir condicionalmente el código de administración solo cuando el usuario está viendo el lado de administración de WordPress:
+
+<?php
+if ( is_admin() ) {
+// we're in wp-admin
+require_once( dirname(__FILE__).'/includes/admin.php' );
+}
+?>
+
+El ejemplo anterior usa la declaración condicional is_admin () para verificar que el usuario está en el panel de administración de WordPress. Si es así, su complemento debe incluir y procesar el archivo /includes/admin.php para su complemento.
+
+
+Estructura de carpetas
+Otro paso importante para un complemento profesional es mantener
+una estructura de carpetas limpia, que se refiere a mantener juntos todos los archivos similares. Por ejemplo, si su complemento requiere archivos JavaScript, cree una carpeta / js y almacene todos los archivos JavaScript en este directorio. Si tiene archivos de hojas de estilo personalizados, cree una carpeta / css para almacenar todos sus archivos CSS. Mantenga todas las imágenes almacenadas en una carpeta / images.
+
+
+Ahora mire una estructura de carpetas estándar para un complemento:
+
+• / unique-plugin-name - (sin espacios ni especial caracteres)
+
+• unique-plugin-name.php - Complemento principal Archivo PHP
+
+• uninstall.php: el archivo de desinstalación de su
+enchufar
+
+	• / js: carpeta para archivos JavaScript
+	• / css: carpeta para archivos de hojas de estilo
+	• / includes: carpeta para otros PHP includes
+	• / images: carpeta para imágenes de complementos
+
+
+	Como puede ver, mantener sus archivos organizados usando una estructura de carpetas limpia puede hacer que sea mucho más fácil rastrear el flujo de su complemento a lo largo del tiempo. También puede hacer que sea mucho más fácil para otros desarrolladores de complementos seguir su lógica cuando ven el código fuente de su complemento.
+
+	HEADER REQUIREMENTS 56
