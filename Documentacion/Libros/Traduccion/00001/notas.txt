@@ -270,3 +270,77 @@ wp-content / plugins en una instalación estándar de WordPress. El segundo dire
 La principal diferencia entre los dos es que el directorio mu-plugins es para complementos que siempre se ejecutan. Esto significa que cualquier complemento incluido en este directorio se cargará automáticamente en WordPress y en todos los sitios de la red si ejecuta Multi-sitio.
 
 El directorio mu-plugins no leerá los complementos en una subcarpeta, por lo que todos los complementos serán archivos individuales o deben incluir archivos adicionales que existan en un subdirectorio. Cualquier archivo de complemento en una subcarpeta se ignorará a menos que se incluya en el archivo de complemento principal.
+
+
+Tipos de complementos
+WordPress presenta algunos tipos y estados diferentes de complementos, como se muestra en la Figura 1-4. Debe comprender la diferencia al administrar y crear complementos para WordPress.
+
+
+• Activo: el complemento está activo y ejecutándose en WordPress.
+
+• Inactivo: el complemento está instalado pero no activo. No se ejecuta ningún código del complemento.
+
+• Uso obligatorio: todos los complementos instalados en el directorio wp-content / mu-plugins. Todos los complementos Must-Use, o MU, se cargan automáticamente. La única forma de desactivar un complemento MU es eliminarlo por completo del directorio.
+
+• Drop-ins: la funcionalidad principal de WordPress se puede reemplazar por complementos Drop-in. Estos complementos son archivos PHP con nombre específico ubicados en el directorio wp-content. Si WordPress detecta uno de estos archivos, se cargará automáticamente y se incluirá en el filtro Drop-in en la pantalla del complemento. Actualmente, hay diez complementos disponibles:
+
+
+• advanced-cache.php: complemento de almacenamiento en caché avanzado
+
+• db.php - Clase de base de datos personalizada
+
+• db-error.php: mensaje de error de la base de datos personalizada
+
+• install.php - Script de instalación personalizado
+
+• maintenance.php: mensaje de mantenimiento personalizado
+
+• object-cache.php - Caché de objetos externos
+
+• sunrise.php - Mapeo de dominio avanzado
+
+• blog-deleted.php - Mensaje eliminado de blog personalizado
+
+• blog-inactive.php - Mensaje inactivo de blog personalizado
+
+• blog-fallen.php: mensaje de blog personalizado suspendido
+
+
+Los últimos cuatro complementos de inserción son específicos de la función de sitios múltiples de WordPress. Una instalación estándar de WordPress no tendrá ningún uso para estos complementos.
+
+Al desarrollar un nuevo complemento, determine qué tipo de
+complemento que desea crear antes de comenzar el desarrollo
+proceso. La mayoría de los complementos serán complementos estándar de WordPress, pero en ocasiones es posible que deba crear un complemento específico de uso obligatorio o directo.
+
+Prueba de la funcionalidad del complemento
+En ocasiones, es posible que desee probar alguna funcionalidad de complemento sin crear realmente un complemento para hacerlo. Muchos desarrolladores colocarán código directamente en el archivo wp-config.php para hacerlo. Esta es una mala técnica y no debe usarse porque cuando el archivo de configuración se analiza y carga, WordPress aún no está completamente instanciado.
+
+
+En lugar de piratear wp-config.php, cree un archivo test.php con
+el siguiente fragmento de código y colóquelo en su directorio raíz de WordPress:
+
+<?php
+
+// Fichero para pruebas sugerido por WordPress
+
+// Load the WordPress Environment
+define('WP_DEBUG', true);
+/* uncomment for debug mode */
+require './wp-load.php';
+require_once './wp-admin/admin.php';
+/* uncomment for is_admin() */
+?>
+<pre>
+<?php
+/* test stuff here */
+var_dump(is_admin());
+?>
+</pre>
+
+Fragmento de código test.php
+Esta es una forma rápida de cargar todas las funciones de WordPress necesarias para probar la funcionalidad del complemento sin crear un complemento. Como puede ver, wp-load.php se incluye al principio del archivo. También puede incluir wp-admin/admin.php si desea probar la funcionalidad del lado del administrador. Una vez que haya incluido los archivos principales de WordPress necesarios, querrá probar cualquier código que, de otro modo, existiría en su complemento. No olvide eliminar su archivo test.php cuando haya terminado de probar.
+
+RESUMEN
+En este capítulo, aprendió sobre los complementos y cómo pueden interactuar con WordPress utilizando las API disponibles. Se discutieron las principales ventajas de usar complementos y por qué la funcionalidad de los complementos no siempre debe incluirse en un tema. Se cubrió la instalación y administración de complementos en el panel de administración de WordPress. Ahora que comprende cómo funcionan los complementos en WordPress, ¡es hora de crear la base del complemento!
+
+
