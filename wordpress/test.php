@@ -3,15 +3,15 @@
 // Fichero para pruebas sugerido por WordPress
 
 // Load the WordPress Environment
-define('WP_DEBUG', true);
+// define('WP_DEBUG', true);
 /* uncomment for debug mode */
-require './wp-load.php';
-require_once './wp-admin/admin.php';
+// require './wp-load.php';
+// require_once './wp-admin/admin.php';
 /* uncomment for is_admin() */
-?>
-<pre>
+;?>
+<!-- <pre> -->
 <?php
 /* test stuff here */
-var_dump(is_admin());
-?>
-</pre>
+// var_dump(is_admin());
+;?>
+<!-- </pre> -->
