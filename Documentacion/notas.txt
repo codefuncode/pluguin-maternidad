@@ -90,3 +90,5 @@ https://adambrown.info/p/wp_hooks/version/5.7
 
 Existe una forma de cargar complementos privados y para eso debe crear el directorio mu-plugins. 
 Esto ya que usted deberá crear el directorio manualmente por lo que el  complemento no estará disponible en un directorio de complementos WordPress. Aunque también podemos hacerlo con el directorio regular , sin embargo esta carpeta fija el complemento y no se puede desinstalar además de que tiene prioridad de carga.
+
+https://www.bjornjohansen.com/
